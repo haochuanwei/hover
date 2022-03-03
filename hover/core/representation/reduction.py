@@ -39,6 +39,10 @@ class DimensionalityReducer(Loggable):
             import ivis
 
             reducer_cls = ivis.Ivis
+        elif method == "cvae":
+            from .wrapped import CVAEReducer
+
+            reducer_cls = CVAEReducer
         else:
             raise ValueError("Expected 'umap' or 'ivis' as reduction method")
 

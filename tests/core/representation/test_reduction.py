@@ -39,6 +39,10 @@ def test_dimensionality_reduction(n_points=1000):
     embedding = reducer.transform(arr, "ivis")
     assert embedding.shape == (n_points, 4)
 
+    reducer.fit_transform("cvae", dimension=2, batch_size=16)
+    embedding = reducer.transform(arr, "cvae")
+    assert embedding.shape == (n_points, 2)
+
     try:
         reducer.fit_transform("invalid_method")
         pytest.fail("Expected exception from invalid reduction method.")
